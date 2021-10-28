@@ -84,7 +84,7 @@ for i in x.y.z.a x.y.z.b x.y.z.c; do
   /usr/sbin/fping -q ${i}
   if [ $? -eq "0" ]; then
     echo " checking node_exporter on ${i}"
-      /bin/nc -zw1 ${i} 9101 || ssh admin@${i} '/tmp/mnt/sda1/cron_asus.sh'
+      /bin/nc -zw1 ${i} 9101 || ssh admin@${i} 'source /etc/profile; /tmp/mnt/sda1/cron_asus.sh'
       if [ $? -eq "0" ]; then
         echo "  already running on ${i}"
       else
