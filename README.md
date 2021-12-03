@@ -4,6 +4,11 @@
   enable ssh access via webui, add your linux server's user's public key.  you can only have one public key
 
 ### wifi
+  wireless
+  - mode: auto
+  - check `disable 11b` unless you actually have 802.11b clients on your network.
+  - enable 802.11x if you have clients
+
   wireless / professional / 2.4ghz
   - roaming assistant `-67` dBm
   - Tx power adjust: `Fair`
