@@ -7,7 +7,7 @@
   wireless
   - mode: auto
   - check `disable 11b` unless you actually have 802.11b clients on your network.
-  - enable 802.11x if you have clients
+  - enable 802.11ax if you have clients
 
   wireless / professional / 2.4ghz
   - roaming assistant `-67` dBm
@@ -47,7 +47,7 @@ NETDEVOPTS="--collector.netdev.device-exclude=\"dpsta|br.*|bcmsw.*|ifb.*|imq.*|i
 pidof node_exporter 1> /dev/null
 
 if [[ $? -ne 0 ]] ; then
-  /tmp/mnt/sda1/node_exporter --web.listen-address=":9101" ${FSOPTS} ${HWOPTS} ${NETOPTS} ${OTHEROPTS} ${NETDEVOPTS} 2>&1 1> /dev/null
+  /tmp/mnt/sda1/node_exporter --web.listen-address=":9101" ${FSOPTS} ${HWOPTS} ${NETOPTS} ${OTHEROPTS} ${NETDEVOPTS} 1> /dev/null 2>&1
 fi
 ```
 ## cron_asus.sh
