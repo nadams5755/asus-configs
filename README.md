@@ -2,6 +2,18 @@
   add your mesh nodes, note their IP addresses, create DHCP reservations, and maybe DNS records for them
 
   enable ssh access via webui, add your linux server's user's public key.  you can only have one public key
+### upnp
+  advanced settings / wan
+  - enable upnp: `no`
+
+### ipv6
+  if you have an isp that supports ipv6 (comcast/xfinity, at&t, etc) you should enable it
+
+  advanced settings / ipv6
+  - connection type: `native`
+  - dhcp-pd: `enable`
+  - auto configuration setting: `stateless`
+  - enable router advertisement `enable`
 
 ### wifi
   wireless
