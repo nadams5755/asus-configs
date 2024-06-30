@@ -30,9 +30,18 @@
 
 ## node_exporter
 
+  note: node_exporter versions >= 1.4 changed the way netdev stats are collected.  read up on `--collector.netclass_rtnl.with-stats` for more info.
+
   download and unpack [node_exporter](https://github.com/prometheus/node_exporter) armv5
 
-  put node_exporter on your usb stick, either via linux or scp.
+  put node_exporter on your usb stick, either via linux or scp.  it can be done directly via wget:
+
+  ```
+  cd $path_to_usb_disk_mount
+  wget https://github.com/prometheus/node_exporter/releases/download/v1.8.1/node_exporter-1.8.1.linux-armv5.tar.gz
+  tar -zxvf node_exporter-1.8.1.linux-armv5.tar.gz
+  cp node_exporter-1.8.1.linux-armv5/node_exporter ./
+  ```
 
   scp `cron_asus.sh` and `node_asus.sh` to your usb mount in the asus node, usually `/tmp/mnt/sda1/`
 
@@ -40,7 +49,7 @@
 
   background - port 9100's already in use, need to choose an alternate port (9101)
 
-  we include all the runtime options are to minimize memory usage
+  we include all the runtime options to minimize memory usage
 
 ## node_asus.sh startup script
 ```
@@ -52,9 +61,9 @@ HWOPTS="--no-collector.powersupplyclass --no-collector.hwmon --no-collector.sche
 
 NETOPTS="--no-collector.infiniband --no-collector.bonding --no-collector.ipvs"
 
-OTHEROPTS="--no-collector.textfile --no-collector.pressure --no-collector.rapl"
+OTHEROPTS="--no-collector.textfile --no-collector.pressure --no-collector.rapl --collector.ntp"
 
-NETDEVOPTS="--collector.netdev.device-exclude=\"dpsta|br.*|bcmsw.*|ifb.*|imq.*|ip6tnl.*|sit.*|^.*dummy.*\""
+NETDEVOPTS="--collector.netclass_rtnl.with-stats --no-collector.netdev.netlink"
 
 pidof node_exporter 1> /dev/null
 
